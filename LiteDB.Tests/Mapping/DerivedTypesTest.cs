@@ -24,12 +24,12 @@ namespace LiteDB.Tests
     }
 
     [TestClass]
-    public class DerivedTypeTest
+	public class DerivedTypeTest : TestBase
     {
         [TestMethod]
         public void DerivedType_Test()
         {
-            using (var db = new LiteDatabase(new MemoryStream()))
+         using (var db = LiteDatabaseFactory.Instance.Create(new MemoryStream()))
             {
                 var derived1 = new Derived1 { Id = 1, Member1 = "Derived1" };
                 var derived2 = new Derived2 { Id = 2, Member2 = "Dereived2" };

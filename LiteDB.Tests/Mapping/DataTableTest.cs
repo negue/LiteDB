@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Data;
 using System.Linq;
+using LiteDB.Shell;
 
 namespace LiteDB.Tests
 {
@@ -13,11 +14,12 @@ namespace LiteDB.Tests
         [TestMethod]
         public void DataTable_Test()
         {
-            using (var db = new LiteDatabase(new MemoryStream()))
+         using (var db = LiteDatabaseFactory.Instance.Create(new MemoryStream()))
             {
-                db.Run("db.col1.insert {name:\"John Doe\"}");
-                db.Run("db.col1.insert {name:\"Jonatan Doe\", age: 25}");
-                db.Run("db.col1.insert {name:\"Maria Doe\", age: 32, active: false}");
+            var shell = new LiteShell(db);
+                shell.Run("db.col1.insert {name:\"John Doe\"}");
+                shell.Run("db.col1.insert {name:\"Jonatan Doe\", age: 25}");
+                shell.Run("db.col1.insert {name:\"Maria Doe\", age: 32, active: false}");
 
                 var query = db.GetCollection("col1").FindAll();
 

@@ -1,9 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
+using LiteDB.Interfaces;
 
 namespace LiteDB.Tests
 {
@@ -19,11 +18,11 @@ namespace LiteDB.Tests
     }
 
     [TestClass]
-    public class ParallelTest
-    {
+    public class ParallelTest : TestBase
+   {
         private static string _filename;
 
-        [TestMethod]
+      [TestMethod]
         public void ParallelReadInsertUpdate_Test()
         {
             this.Setup();
@@ -74,33 +73,35 @@ namespace LiteDB.Tests
         {
             return new Target { Name = Guid.NewGuid().ToString(), LastUpdateCheck = DateTime.Now };
         }
-
-        [ClassInitialize()]
-        public static void ClassInit(TestContext context)
+      
+        public ParallelTest()
         {
             _filename = DB.RandomFile();
         }
 
-        private void Setup()
+      private int SetupIterations = 1000;
+       private int ExecuteIterations = 100;
+
+      private void Setup()
         {
-            using (var db = new LiteDatabase(_filename))
+         using (var db = LiteDatabaseFactory.Instance.Create(_filename))
             {
                 db.DropCollection("targets");
-                for (var i = 0; i < 1000; i++)
+                for (var i = 0; i < SetupIterations; i++)
                 {
                     db.GetCollection<Target>("targets").Insert(this.CreateTarget());
                 }
             }
         }
 
-        private Task<ParallelLoopResult> Execute(string prefix, Action<LiteDatabase> action)
+        private Task<ParallelLoopResult> Execute(string prefix, Action<ILiteDatabase> action)
         {
-            return Task.Factory.StartNew(() => Parallel.For(0, 100, x =>
+         return Task.Factory.StartNew(() => Parallel.For(0, ExecuteIterations, x =>
             {
                 //Console.Write($"{prefix}-{x}-{Thread.CurrentThread.ManagedThreadId} ");
                 try
                 {
-                    using (var db = new LiteDatabase(_filename))
+                  using (var db = LiteDatabaseFactory.Instance.Create(_filename))
                     {
                         action(db);
                     }

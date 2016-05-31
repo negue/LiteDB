@@ -37,12 +37,12 @@ namespace LiteDB.Tests
     }
 
     [TestClass]
-    public class LinqTest
-    {
+    public class LinqTest : TestBase
+   {
         [TestMethod]
         public void Linq_Test()
         {
-            using (var db = new LiteDatabase(new MemoryStream()))
+         using (var db = LiteDatabaseFactory.Instance.Create(new MemoryStream()))
             {
                 var c1 = new User { Id = 1, Name = "Mauricio", Active = true, Domain = new UserDomain { DomainName = "Numeria" } };
                 var c2 = new User { Id = 2, Name = "Malatruco", Active = false, Domain = new UserDomain { DomainName = "Numeria" } };
@@ -92,7 +92,7 @@ namespace LiteDB.Tests
         [TestMethod]
         public void EnumerableTest()
         {
-            using (var db = new LiteDatabase(new MemoryStream()))
+         using (var db = LiteDatabaseFactory.Instance.Create(new MemoryStream()))
             {
                 var col = db.GetCollection<User>("Users");
 

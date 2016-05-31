@@ -1,5 +1,4 @@
-﻿#if NETFULL
-using System.IO;
+﻿using System.IO;
 
 namespace LiteDB.Shell.Commands
 {
@@ -25,4 +24,3 @@ namespace LiteDB.Shell.Commands
         }
     }
 }
-#endif

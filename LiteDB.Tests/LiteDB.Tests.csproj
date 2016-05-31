@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;FullDotNet</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,14 +39,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiteDB090">
-      <HintPath>..\LiteDB.Shell\Resources\LiteDB090.dll</HintPath>
-      <Aliases>v090</Aliases>
-    </Reference>
-    <Reference Include="LiteDB104">
-      <HintPath>..\LiteDB.Shell\Resources\LiteDB104.dll</HintPath>
-      <Aliases>v104</Aliases>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -73,6 +65,7 @@
     <Compile Include="Bson\BsonTest.cs" />
     <Compile Include="Crud\DbVersionTest.cs" />
     <Compile Include="Disks\EncryptedTest.cs" />
+    <Compile Include="InitializeTests.cs" />
     <Compile Include="Mapping\AutoIdTest.cs" />
     <Compile Include="Crud\DropCollectionTest.cs" />
     <Compile Include="Crud\FileStorageTest.cs" />
@@ -88,8 +81,10 @@
     <Compile Include="Bson\JsonTest.cs" />
     <Compile Include="Index\LinqTest.cs" />
     <Compile Include="Mapping\IncludeTest.cs" />
+    <Compile Include="Mapping\ReflectionTests.cs" />
     <Compile Include="Shell\ShellTest.cs" />
-    <Compile Include="Utils\Initialize.cs" />
+    <Compile Include="TestBase.cs" />
+    <Compile Include="TestPlatform.cs" />
     <Compile Include="Utils\DB.cs" />
     <Compile Include="Index\IndexOrderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,19 +6,19 @@ using System.IO;
 namespace LiteDB.Tests
 {
     [TestClass]
-    public class BigFileTest
-    {
+    public class BigFileTest : TestBase
+   {
         //[TestMethod]
         public void BigFile_Test()
         {
             var fileSize = 8L * 1024L * 1024L * 1024L; // 5Gb
-            var filename = "C:/Github/LiteDB/TestResults/test-4gb.db"; // DB.Path();
+            var filename = "D:/temp/test-4gb.db"; // DB.Path();
 
             //File.Delete(filename);
 
             while (GetFileSize(filename) < fileSize)
             {
-                using (var db = new LiteDatabase("journal=false;filename=" + filename))
+            using (var db = LiteDatabaseFactory.Instance.Create("journal=false;filename=" + filename))
                 {
                     var col = db.GetCollection("col1");
 

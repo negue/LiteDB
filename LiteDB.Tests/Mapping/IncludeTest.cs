@@ -33,11 +33,6 @@ namespace LiteDB.Tests
 
     public class IncludeDatabase : LiteDatabase
     {
-        public IncludeDatabase()
-            : base(new MemoryStream())
-        {
-        }
-
         public LiteCollection<Customer> Customers { get { return this.GetCollection<Customer>("customers"); } }
         public LiteCollection<Order> Orders { get { return this.GetCollection<Order>("orders"); } }
         public LiteCollection<Product> Products { get { return this.GetCollection<Product>("products"); } }
@@ -56,12 +51,12 @@ namespace LiteDB.Tests
     }
 
     [TestClass]
-    public class IncludeTest
-    {
+	public class IncludeTest : TestBase
+	{
         [TestMethod]
         public void Include_Test()
         {
-            using (var db = new IncludeDatabase())
+         using (var db = LiteDatabaseFactory.Instance.Create<IncludeDatabase>(new MemoryStream()))
             {
                 var customer = new Customer { Name = "John Doe" };
 

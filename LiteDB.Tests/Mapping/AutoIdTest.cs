@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using LiteDB.Core;
 
 namespace LiteDB.Tests
 {
@@ -29,12 +30,12 @@ namespace LiteDB.Tests
     }
 
     [TestClass]
-    public class AutoIdTest
-    {
+    public class AutoIdTest : TestBase
+   {
         [TestMethod]
         public void AutoId_Test()
         {
-            using (var db = new LiteDatabase(new MemoryStream()))
+         using (var db = LiteDatabaseFactory.Instance.Create(new MemoryStream()))
             {
                 var cs_int = db.GetCollection<EntityInt>("int");
                 var cs_guid = db.GetCollection<EntityGuid>("guid");

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace LiteDB
 {
-    internal partial class DbEngine : IDisposable
+   public partial class DbEngine : IDisposable
     {
         /// <summary>
         /// Copy database do another disk

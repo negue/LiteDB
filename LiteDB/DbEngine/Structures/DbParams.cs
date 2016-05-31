@@ -3,7 +3,7 @@
     /// <summary>
     /// DbParams is 200 bytes data stored in header page and used to setup variables to database
     /// </summary>
-    internal class DbParams
+    public class DbParams
     {
         /// <summary>
         /// Database user version [2 bytes]

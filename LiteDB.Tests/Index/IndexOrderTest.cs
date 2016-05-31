@@ -5,12 +5,12 @@ using System.Linq;
 namespace LiteDB.Tests
 {
     [TestClass]
-    public class IndexOrderTest
-    {
+    public class IndexOrderTest : TestBase
+   {
         [TestMethod]
         public void Index_Order()
         {
-            using (var db = new LiteDatabase(new MemoryStream()))
+         using (var db = LiteDatabaseFactory.Instance.Create(new MemoryStream()))
             {
                 var col = db.GetCollection<BsonDocument>("order");
 

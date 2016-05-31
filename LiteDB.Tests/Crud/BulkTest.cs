@@ -6,12 +6,12 @@ using System.IO;
 namespace LiteDB.Tests
 {
     [TestClass]
-    public class BulkTest
-    {
+    public class BulkTest : TestBase
+   {
         [TestMethod]
         public void Bulk_Test()
         {
-            using (var db = new LiteDatabase(new MemoryStream()))
+            using (var db = LiteDatabaseFactory.Instance.Create(new MemoryStream()))
             {
                 var col = db.GetCollection("b");
 

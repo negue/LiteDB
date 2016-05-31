@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LiteDB
 {
-    internal partial class DbEngine : IDisposable
+   public partial class DbEngine : IDisposable
     {
         /// <summary>
         /// Implements insert documents in a collection - use a buffer to commit transaction in each buffer count

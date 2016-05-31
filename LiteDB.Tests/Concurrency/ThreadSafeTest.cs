@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace LiteDB.Tests
 {
     [TestClass]
-    public class ThreadSafeTest
-    {
+    public class ThreadSafeTest : TestBase
+   {
         private Random _rnd = new Random();
 
         [TestMethod]
@@ -18,7 +18,7 @@ namespace LiteDB.Tests
             var N = 300; // interate counter
 
             // use a single instance of LiteDatabase/Collection
-            var a = new LiteDatabase(dbname);
+            var a = LiteDatabaseFactory.Instance.Create(dbname);
             var col = a.GetCollection("col1");
             col.EnsureIndex("name");
 
@@ -83,7 +83,7 @@ namespace LiteDB.Tests
 
             a.Dispose();
 
-            using (var db = new LiteDatabase(dbname))
+         using (var db = LiteDatabaseFactory.Instance.Create(dbname))
             {
                 var cl = db.GetCollection("col1");
                 var doc = cl.FindById(1);

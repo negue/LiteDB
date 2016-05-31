@@ -6,14 +6,14 @@ using System.IO;
 namespace LiteDB.Tests
 {
     [TestClass]
-    public class LongCountTest
-    {
+    public class LongCountTest : TestBase
+   {
         public const long TOTAL_COUNT = uint.MaxValue + 10L;
 
         //[TestMethod]
         public void LongCountTest_Test()
         {
-            using (var db = new LiteDatabase(DB.RandomFile()))
+         using (var db = LiteDatabaseFactory.Instance.Create(DB.RandomFile()))
             {
                 var c = db.GetCollection("col1");
 

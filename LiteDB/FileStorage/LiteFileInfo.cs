@@ -131,21 +131,6 @@ namespace LiteDB
             return new LiteFileStream(_engine, this);
         }
 
-#if !PCL
-        /// <summary>
-        /// Save file content to a external file
-        /// </summary>
-        public void SaveAs(string filename, bool overwritten = true)
-        {
-            if (_engine == null) throw LiteException.NoDatabase();
-
-            using (var file = new FileStream(filename, overwritten ? FileMode.Create : FileMode.CreateNew))
-            {
-                this.OpenRead().CopyTo(file);
-            }
-        }
-#endif
-
         /// <summary>
         /// Copy file content to another stream
         /// </summary>

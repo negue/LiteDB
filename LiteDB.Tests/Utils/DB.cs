@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace LiteDB.Tests
@@ -12,9 +11,7 @@ namespace LiteDB.Tests
         // Get a unique database name in TestResults folder
         public static string RandomFile(string ext = "db")
         {
-            var path = System.IO.Path.GetFullPath(
-                System.IO.Directory.GetCurrentDirectory() +
-                string.Format("../../../../TestResults/test-{0}.{1}", Guid.NewGuid(), ext));
+           var path = TestPlatform.GetTempFilePath(ext);
 
             _files.Add(path);
 
@@ -25,7 +22,7 @@ namespace LiteDB.Tests
         {
             foreach(var f in _files)
             {
-                File.Delete(f);
+                TestPlatform.DeleteFile(f);
             }
             _files = new List<string>();
         }

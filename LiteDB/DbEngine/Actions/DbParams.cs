@@ -2,7 +2,7 @@
 
 namespace LiteDB
 {
-    internal partial class DbEngine : IDisposable
+   public partial class DbEngine : IDisposable
     {
         /// <summary>
         /// Get database schema version

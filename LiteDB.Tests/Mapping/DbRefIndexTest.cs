@@ -19,11 +19,6 @@ namespace LiteDB.Tests
 
     public class DbRefIndexDatabase : LiteDatabase
     {
-        public DbRefIndexDatabase()
-            : base(new MemoryStream())
-        {
-        }
-
         public LiteCollection<DCustomer> Customers { get { return this.GetCollection<DCustomer>("customers"); } }
         public LiteCollection<DOrder> Orders { get { return this.GetCollection<DOrder>("orders"); } }
 
@@ -41,12 +36,12 @@ namespace LiteDB.Tests
     }
 
     [TestClass]
-    public class DbRefIndexTest
+	public class DbRefIndexTest : TestBase
     {
         [TestMethod]
         public void DbRefIndexe_Test()
         {
-            using (var db = new DbRefIndexDatabase())
+         using (var db = LiteDatabaseFactory.Instance.Create<DbRefIndexDatabase>(new MemoryStream()))
             {
                 var customer = new DCustomer { Login = "jd", Name = "John Doe" };
                 var order = new DOrder { OrderNumber = 1, Customer = customer };

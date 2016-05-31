@@ -1,5 +1,4 @@
-﻿#if NETFULL
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -17,7 +16,7 @@ namespace LiteDB.Shell.Commands
             var col = this.ReadCollection(engine, s);
             var filename = s.Scan(@".*");
 
-            using (var sr = new StreamReader(filename, Encoding.UTF8))
+            using (var sr = new StreamReader(  filename, Encoding.UTF8))
             {
                 var docs = JsonSerializer.DeserializeArray(sr);
 
@@ -26,4 +25,3 @@ namespace LiteDB.Shell.Commands
         }
     }
 }
-#endif

@@ -1,24 +1,27 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 
+#if !PCL
+using LiteDB.Extensions;
+#endif 
+
 namespace LiteDB.Tests
 {
     [TestClass]
-    public class FileStorage_Test
-    {
+    public class FileStorage_Test : TestBase
+   {
         [TestMethod]
         public void FileStorage_InsertDelete()
         {
             // create a dump file
-            File.WriteAllText("Core.dll", "FileCoreContent");
+            var coreDllPath = TestPlatform.FileWriteAllText("Core.dll", "FileCoreContent");
 
-            using (var db = new LiteDatabase(new MemoryStream()))
+         using (var db = LiteDatabaseFactory.Instance.Create(new MemoryStream()))
             {
                 // upload
-                db.FileStorage.Upload("Core.dll", "Core.dll");
+                db.FileStorage.Upload("Core.dll", coreDllPath);
 
                 // exits
                 var exists = db.FileStorage.Exists("Core.dll");
@@ -49,16 +52,16 @@ namespace LiteDB.Tests
                 Assert.AreEqual(false, deleted2);
             }
 
-            File.Delete("Core.dll");
+         TestPlatform.DeleteFile("Core.dll");
         }
-
-        [TestMethod]
+#if !PCL
+      [TestMethod]
         public void FileStoage_50files()
         {
             var file5mb = new byte[5 * 1024 * 1024];
             var filedb = DB.RandomFile();
 
-            using (var db = new LiteDatabase(filedb))
+         using (var db = LiteDatabaseFactory.Instance.Create(filedb))
             {
                 for(var i = 0; i < 50; i++)
                 {
@@ -69,7 +72,7 @@ namespace LiteDB.Tests
             // filedb must have, at least, 250mb
             Assert.IsTrue(new FileInfo(filedb).Length > (250 * 1024 * 1024), "Datafile must have more than 250Mb");
 
-            using (var db = new LiteDatabase(filedb))
+         using (var db = LiteDatabaseFactory.Instance.Create(filedb))
             {
                 foreach(var f in db.FileStorage.FindAll())
                 {
@@ -77,5 +80,6 @@ namespace LiteDB.Tests
                 }
             }
         }
+#endif
     }
 }

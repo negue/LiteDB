@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{36EEE6BD-B355-47C7-A49E-D0368541E5D5}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>LiteDB.Tests.Mac</RootNamespace>
+    <AssemblyName>LiteDB.Tests.Mac</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;PCL;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <EnableCodeSigning>false</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <CreatePackage>false</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <HttpClientHandler>HttpClientHandler</HttpClientHandler>
+    <TlsProvider>Default</TlsProvider>
+    <LinkMode>None</LinkMode>
+    <XamMacArch></XamMacArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <EnableCodeSigning>true</EnableCodeSigning>
+    <CodeSigningKey>Developer ID Application</CodeSigningKey>
+    <CreatePackage>true</CreatePackage>
+    <EnablePackageSigning>false</EnablePackageSigning>
+    <IncludeMonoRuntime>true</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <UseRefCounting>true</UseRefCounting>
+    <LinkMode>SdkOnly</LinkMode>
+    <HttpClientHandler>HttpClientHandler</HttpClientHandler>
+    <TlsProvider>Default</TlsProvider>
+    <XamMacArch></XamMacArch>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.4.1\lib\portable-net45+win8+wp8+wpa81+Xamarin.Mac+MonoAndroid10+MonoTouch10+Xamarin.iOS10\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-128%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-16%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-256%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-32%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\AppIcon-512%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="TestView.cs" />
+    <Compile Include="TestViewController.cs" />
+    <Compile Include="TestView.designer.cs">
+      <DependentUpon>TestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestViewController.designer.cs">
+      <DependentUpon>TestViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.cs" />
+    <Compile Include="MainWindow.designer.cs" />
+    <Compile Include="MainWindowController.cs" />
+    <Compile Include="MainWindowController.designer.cs" />
+    <Compile Include="..\LiteDB.Tests\Bson\BsonTest.cs">
+      <Link>Tests\Bson\BsonTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Bson\JsonTest.cs">
+      <Link>Tests\Bson\JsonTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Bson\ObjectIdTest.cs">
+      <Link>Tests\Bson\ObjectIdTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Concurrency\TaskTest.cs">
+      <Link>Tests\Concurrency\TaskTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Concurrency\ThreadSafeTest.cs">
+      <Link>Tests\Concurrency\ThreadSafeTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Disks\EncryptedTest.cs">
+      <Link>Tests\Disks\EncryptedTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Index\IndexOrderTest.cs">
+      <Link>Tests\Index\IndexOrderTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Index\LinqTest.cs">
+      <Link>Tests\Index\LinqTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Mapping\AutoIdTest.cs">
+      <Link>Tests\Mapping\AutoIdTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Mapping\BsonFieldTest.cs">
+      <Link>Tests\Mapping\BsonFieldTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Mapping\DbRefIndexTest.cs">
+      <Link>Tests\Mapping\DbRefIndexTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Mapping\DerivedTypesTest.cs">
+      <Link>Tests\Mapping\DerivedTypesTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Mapping\IncludeTest.cs">
+      <Link>Tests\Mapping\IncludeTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Mapping\MapperInterfaceTest.cs">
+      <Link>Tests\Mapping\MapperInterfaceTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Mapping\MapperTest.cs">
+      <Link>Tests\Mapping\MapperTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Mapping\ReflectionTests.cs">
+      <Link>Tests\Mapping\ReflectionTests.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Shell\ShellTest.cs">
+      <Link>Tests\Shell\ShellTest.cs</Link>
+    </Compile>
+    <Compile Include="..\LiteDB.Tests\Utils\DB.cs">
+      <Link>Tests\Utils\DB.cs</Link>
+    </Compile>
+    <Compile Include="Tests\TestBase.cs" />
+    <Compile Include="Tests\TestPlatform.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="MainMenu.xib" />
+    <InterfaceDefinition Include="TestView.xib" />
+    <InterfaceDefinition Include="MainWindow.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LiteDB.Core\LiteDB.Core.csproj">
+      <Project>{59BA13E6-C19B-4D8B-B504-FB5D0A1E27F3}</Project>
+      <Name>LiteDB.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LiteDB.Platform.MacOS\LiteDB.Platform.MacOS.csproj">
+      <Project>{49E13166-B850-4CC1-87B7-1DF9DB79506E}</Project>
+      <Name>LiteDB.Platform.MacOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LiteDB.Shell\LiteDB.Shell.csproj">
+      <Project>{4D615F2E-BC3D-4F5C-BD75-B6FAB2B55A5C}</Project>
+      <Name>LiteDB.Shell</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tests\" />
+    <Folder Include="Tests\Bson\" />
+    <Folder Include="Tests\Concurrency\" />
+    <Folder Include="Tests\Disks\" />
+    <Folder Include="Tests\Index\" />
+    <Folder Include="Tests\Mapping\" />
+    <Folder Include="Tests\Shell\" />
+    <Folder Include="Tests\Utils\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+</Project>

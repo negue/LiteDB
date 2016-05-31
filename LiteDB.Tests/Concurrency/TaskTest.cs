@@ -1,12 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
+using LiteDB.Interfaces;
 
 namespace LiteDB.Tests
 {
-    public class TestPocoClass
+   public class TestPocoClass
     {
         [BsonId]
         public string Key { get; set; }
@@ -14,21 +13,19 @@ namespace LiteDB.Tests
     }
 
     [TestClass]
-    public class Task_Test
-    {
-        private static LiteDatabase db;
+    public class Task_Test : TestBase
+   {
+        private static ILiteDatabase db;
         private static LiteCollection<TestPocoClass> col;
 
-        [ClassInitialize()]
-        public static void ClassInit(TestContext context)
+      public Task_Test()
         {
-            db = new LiteDatabase(new MemoryStream());
+            db = LiteDatabaseFactory.Instance.Create(new MemoryStream());
             col = db.GetCollection<TestPocoClass>("col1");
             col.EnsureIndex(o => o.Key);
         }
 
-        [ClassCleanup()]
-        public static void ClassCleanup()
+      ~Task_Test()
         {
             db.Dispose();
         }
